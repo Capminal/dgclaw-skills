@@ -1,0 +1,59 @@
+{
+  "_version": "1",
+  "_name": "trend_following_pullback",
+  "_description": "Trend-following pullback strategy optimized for leaderboard scoring (Sortino 40%, Return 35%, PF 25%). All pct values in trade_params are PRICE MOVEMENT %, not PnL % — multiply by leverage for PnL on margin.",
+  "_rationale": "1h EMA crossover identifies trend direction; ADX filters sideways markets; 15m 2-of-3 group system catches pullback entries with confirmation from RSI and volume.",
+  "_created": "2026-03-27",
+
+  "trend_filter": {
+    "timeframe": "1h",
+    "ema_fast": 9,
+    "ema_slow": 21,
+    "adx_period": 14,
+    "adx_min": 15
+  },
+
+  "entry_trigger": {
+    "timeframe": "15m",
+    "ema_period": 20,
+    "rsi_period": 14,
+    "min_groups": 2,
+    "group_a_pullback_pct": 0.8,
+    "group_b_rsi_long_max": 48,
+    "group_b_rsi_short_min": 52,
+    "group_c_vol_ratio_min": 0.8
+  },
+
+  "trade_params": {
+    "notional": 1500,
+    "leverage": 5,
+    "tp_pct": 3.0,
+    "sl_pct": 1.5,
+    "be_trigger_pct": 1.5,
+    "be_offset_pct": 0.1,
+    "monitoring_pairs": ["SOL", "AAVE", "SUI", "VIRTUAL", "PAXG", "HYPE", "ZEC", "ZORA"],
+    "max_positions": 6
+  },
+
+  "backtest_params": {
+    "max_concurrent": 5,
+    "warmup_15m": 50,
+    "warmup_1h": 30
+  },
+
+  "risk_management": {
+    "consecutive_sl_limit": 3,
+    "cooldown_minutes": 60,
+    "same_pair_cooldown_minutes": 15,
+    "daily_loss_limit": 5,
+    "daily_loss_pause_minutes": 120
+  },
+
+  "confidence": {
+    "high_min_groups": 3,
+    "medium_min_groups": 2,
+    "extreme_rsi_long_below": 35,
+    "extreme_rsi_short_above": 65,
+    "strong_vol_ratio": 2.0
+  }
+}

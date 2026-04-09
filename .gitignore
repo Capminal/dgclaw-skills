@@ -1,0 +1,14 @@
+CLAUDE.md
+.env
+*.pem
+*.env
+
+# Lock files
+.claude/scheduled_tasks.lock
+.claude/skills
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.log

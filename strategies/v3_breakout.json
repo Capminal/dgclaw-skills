@@ -1,0 +1,74 @@
+{
+  "_version": "3",
+  "_name": "trend_following_breakout_v3",
+  "_created": "2026-04-09",
+  "_based_on": "v2_trend_pullback.json",
+
+  "trend_filter": {
+    "timeframe": "1h",
+    "ema_fast": 9,
+    "ema_slow": 21,
+    "adx_period": 14,
+    "adx_min": 20
+  },
+
+  "macro_filter": {
+    "enabled": false,
+    "timeframe": "1h",
+    "reference_pair": "BTC",
+    "ema_fast": 9,
+    "ema_slow": 21
+  },
+
+  "entry_trigger": {
+    "timeframe": "15m",
+    "ema_period": 20,
+    "rsi_period": 14,
+    "min_groups": 2,
+    "entry_mode": "breakout",
+    "group_a_breakout_min_pct": 0.3,
+    "group_a_breakout_max_pct": 0.7,
+    "group_b_rsi_long_min": 55,
+    "group_b_rsi_short_max": 45,
+    "group_c_vol_ratio_min": 1.2,
+    "short_entry_rsi_floor": 30,
+    "long_entry_rsi_ceiling": 70
+  },
+
+  "trade_params": {
+    "notional": 1500,
+    "leverage": 2,
+    "tp_pct": 1,
+    "sl_pct": 0.5,
+    "be_trigger_pct": 0,
+    "be_offset_pct": 0,
+    "max_hold_minutes": 120,
+    "monitoring_pairs": ["SOL", "SUI", "HYPE",  "BTC", "ETH"],
+    "max_positions": 5,
+    "max_same_direction": 3
+  },
+
+  "backtest_params": {
+    "max_concurrent": 3,
+    "warmup_15m": 50,
+    "warmup_1h": 30,
+    "warmup_4h": 15
+  },
+
+  "risk_management": {
+    "consecutive_sl_limit": 3,
+    "consecutive_sl_window_minutes": 20,
+    "cooldown_minutes": 60,
+    "same_pair_cooldown_minutes": 30,
+    "daily_loss_limit": 8,
+    "daily_loss_pause_minutes": 60
+  },
+
+  "confidence": {
+    "high_min_groups": 3,
+    "medium_min_groups": 2,
+    "extreme_rsi_long_below": 35,
+    "extreme_rsi_short_above": 65,
+    "strong_vol_ratio": 2.0
+  }
+}
